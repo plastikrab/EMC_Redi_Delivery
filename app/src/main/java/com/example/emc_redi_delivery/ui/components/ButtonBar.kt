@@ -19,19 +19,14 @@ import com.example.emc_redi_delivery.ui.theme.MainBlue
 
 @Composable
 fun ButtonBar(
+    modifier: Modifier = Modifier,
     onNext: () -> Unit,
     onSkip: () -> Unit
 ){
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(
-                top = 200.dp,
-                start = 16.dp,
-                end = 16.dp,
-                bottom = 16.dp
-            ),
+        modifier = modifier,
         horizontalArrangement = Arrangement.SpaceBetween
+
     ) {
         OutlinedButton (
             onClick = onSkip,

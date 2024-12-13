@@ -13,6 +13,7 @@ import com.example.emc_redi_delivery.ui.theme.MainBlue
 
 @Composable
 fun SliderText(
+    modifier: Modifier = Modifier,
     text: String
 ){
     Text(
@@ -21,8 +22,7 @@ fun SliderText(
         maxLines = 2,
         color = MainBlue,
         fontSize = 30.sp,
-        modifier = Modifier
-            .fillMaxWidth(),
+        modifier = modifier,
         textAlign = TextAlign.Center
     )
 }

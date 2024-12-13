@@ -28,7 +28,7 @@ class MainViewModel(
     fun loadData() {
         _uiState.value = UiState.Loading
         viewModelScope.launch {
-            delay(2000)
+            delay(1)
             _cardsData.value = listOf(
                 SliderItem(
                     title = "Enjoy quick pick-up and delivery to your destination",

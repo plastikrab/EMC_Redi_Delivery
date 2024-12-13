@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import com.example.emc_redi_delivery.data.states.UiState
 import com.example.emc_redi_delivery.ui.components.ButtonBar
+import com.example.emc_redi_delivery.ui.components.SignInButton
 import com.example.emc_redi_delivery.ui.components.SliderText
 import com.example.emc_redi_delivery.ui.theme.MainBlue
 import com.example.emc_redi_delivery.viewmodel.MainViewModel
@@ -63,7 +64,8 @@ fun MainScreen(viewModel: MainViewModel) {
                 .padding(
                     top = 200.dp,
                     start = 16.dp,
-                    end = 16.dp
+                    end = 16.dp,
+                    bottom = 16.dp
                 )
         ) {
 
@@ -115,6 +117,9 @@ fun MainScreen(viewModel: MainViewModel) {
             )
 
             SliderText(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(3f),
                 cardsData[pagerState.currentPage].title,
             )
 
@@ -122,6 +127,10 @@ fun MainScreen(viewModel: MainViewModel) {
 
             if (pagerState.currentPage != 2) {
                 ButtonBar(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .align(Alignment.CenterHorizontally)
+                        .weight(1f),
                     onNext = {
                         coroutineScope.launch {
                             pagerState.animateScrollToPage(pagerState.currentPage + 1)
@@ -134,57 +143,16 @@ fun MainScreen(viewModel: MainViewModel) {
                     }
                 )
             } else {
-                Column() {
-                    Button(
-                        onClick = {
-                            viewModel.showToast("Вы не просили это делать!")
-                        },
-                        colors = androidx.compose.material.ButtonDefaults.buttonColors(
-                            backgroundColor = MainBlue
-                        ),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(
-                                top = 200.dp,
-                                start = 16.dp,
-                                end = 16.dp,
-                                bottom = 6.dp
-                            )
-                            .height(46.dp)
-                    ) {
-                        Text(
-                            text = "Sign Up",
-                            color = Color.White,
-                            fontWeight = FontWeight(850),
-                        )
+                SignInButton(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .align(Alignment.CenterHorizontally)
+                        .weight(1f)
+                        .padding(bottom = 16.dp),
+                    onClick = {
+                        viewModel.showToast("Вы не просили это делать!")
                     }
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(
-                                start = 16.dp,
-                                end = 16.dp
-                            ),
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        Text(
-                            text = "Already have an account?",
-                            color = Color.Gray,
-                            fontWeight = FontWeight(450),
-                            modifier = Modifier
-
-                        )
-                        Text(
-                            text = "Sign in",
-                            color = MainBlue,
-                            fontWeight = FontWeight(850),
-                            modifier = Modifier
-                                .clickable {
-                                    viewModel.showToast("Вы не просили это делать!")
-                                }
-                        )
-                    }
-                }
+                )
             }
         }
     }
